@@ -1,0 +1,18 @@
+.menuButton {
+  padding: calc(0.75 * var(--base));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray);
+  border-radius: 20rem;
+  cursor: pointer;
+}
+
+.burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  width: calc(1.5 * var(--base));
+  height: calc(1.5 * var(--base));
+}
