@@ -11,6 +11,7 @@ export interface Props {
 	priority?: boolean; // for NextImage only
 	fill?: boolean; // for NextImage only
 	className?: string;
+	style?: any;
 	imgClassName?: string;
 	videoClassName?: string;
 	htmlElement?: ElementType | null;

@@ -1,6 +1,7 @@
 import { Block } from 'payload/types';
 
 import stat from '../../fields/statistic';
+import backgroundColor from '../../fields/backgroundColor';
 
 const overlapSizeOptions = [
 	{
@@ -28,12 +29,12 @@ export const Statistics: Block = {
 		plural: 'Statistics Blocks',
 	},
 	fields: [
+		backgroundColor(),
 		{
 			type: 'row',
 			fields: [
 				{
 					name: 'topOverlap',
-					label: 'Top Overlap',
 					type: 'select',
 					defaultValue: 'none',
 					options: overlapSizeOptions,
@@ -43,7 +44,6 @@ export const Statistics: Block = {
 				},
 				{
 					name: 'bottomOverlap',
-					label: 'Bottom Overlap',
 					type: 'select',
 					defaultValue: 'none',
 					options: overlapSizeOptions,

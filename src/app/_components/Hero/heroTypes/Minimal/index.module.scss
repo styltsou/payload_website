@@ -1,0 +1,29 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  color: var(--color-gray);
+  animation-name: fadeInUp;
+  animation-duration: 700ms;
+  animation-delay: 0ms;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+.richText {
+  margin-top: calc(2 * var(---base));
+  animation-name: fadeInUp;
+  animation-duration: 700ms;
+  animation-delay: 200ms;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}

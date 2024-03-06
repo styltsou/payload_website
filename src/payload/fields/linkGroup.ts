@@ -3,9 +3,7 @@ import type { Field } from 'payload/types';
 
 import deepMerge from '../utilities/deepMerge';
 import type { LinkAppearance } from './link';
-import link, { Type as LinkType } from './link';
-
-export type Type = LinkType[];
+import link from './link';
 
 type LinkGroupType = (options?: {
 	overrides?: Partial<ArrayField>;

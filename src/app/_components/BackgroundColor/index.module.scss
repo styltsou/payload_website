@@ -1,11 +1,23 @@
-.invert {
-  background-color: var(--theme-text);
-  color: var(--theme-bg);
+.background-red {
+  background-color: var(--color-red);
+
+  & * {
+    color: var(--color-antique);
+  }
 }
 
-:global([data-theme="dark"]) {
-  .invert {
-    background-color: var(--theme-elevation-100);
-    color: var(--theme-text);
+.background-blue {
+  background-color: var(--color-blue);
+}
+
+.background-orange {
+  background-color: var(--color-orange);
+}
+
+.background-gray {
+  background-color: var(--color-gray);
+
+  & * {
+    color: var(--color-antique);
   }
 }

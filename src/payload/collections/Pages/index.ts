@@ -5,17 +5,17 @@ import { adminsOrPublished } from '../../access/adminsOrPublished';
 
 import { CallToAction } from '../../blocks/CallToAction';
 import { CTAGrid } from '../../blocks/CTAGrid';
-import { ImageCollage } from '../../blocks/ImageCollage';
-import { ImageGrid } from '../../blocks/ImageGrid';
-import { ImageContentCollage } from '../../blocks/ImageContentCollage';
-import { ImageSlider } from '../../blocks/ImageSlider';
-import { ImageStatCollage } from '../../blocks/ImageStatCollage';
+import { MediaCollage } from '../../blocks/MediaCollage';
+import { MediaGrid } from '../../blocks/MediaGrid';
+import { MediaContentCollage } from '../../blocks/MediaContentCollage';
+import { MediaSlider } from '../../blocks/MediaSlider';
+import { MediaStatCollage } from '../../blocks/MediaStatCollage';
 import { Statistics } from '../../blocks/Statistics';
 import { StickyContent } from '../../blocks/StickyContent';
 import { StudySlider } from '../../blocks/StudySlider';
 import { Content } from '../../blocks/Content';
 import { Spacer } from '../../blocks/Spacer';
-import { Image } from '../../blocks/Image';
+import { MediaBlock } from '../../blocks/MediaBlock';
 
 import hero from '../../fields/hero';
 import slug from '../../fields/slug';
@@ -29,8 +29,12 @@ export const Pages: CollectionConfig = {
 		useAsTitle: 'title',
 		defaultColumns: ['title', 'slug', 'updatedAt'],
 		preview: doc => {
-			return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-				`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${doc.slug !== 'home' ? doc.slug : ''}`,
+			return `${
+				process.env.PAYLOAD_PUBLIC_SERVER_URL
+			}/next/preview?url=${encodeURIComponent(
+				`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${
+					doc.slug !== 'home' ? doc.slug : ''
+				}`,
 			)}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`;
 		},
 	},
@@ -76,15 +80,15 @@ export const Pages: CollectionConfig = {
 							minRows: 1,
 							blocks: [
 								Content,
-								Image,
+								MediaBlock,
 								Spacer,
 								CallToAction,
 								CTAGrid,
-								ImageCollage,
-								ImageGrid,
-								ImageSlider,
-								ImageContentCollage,
-								ImageStatCollage,
+								MediaCollage,
+								MediaGrid,
+								MediaSlider,
+								MediaContentCollage,
+								MediaStatCollage,
 								Statistics,
 								StickyContent,
 								StudySlider,

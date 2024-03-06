@@ -1,0 +1,52 @@
+.sliderOnBackground {
+  overflow: hidden;
+  position: relative;
+}
+
+.gutter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bg {
+  height: 100%;
+}
+
+.slider {
+  padding-top: calc(8 * var(--base));
+  padding-bottom: calc(5 * var(--base));
+  position: relative;
+}
+
+.trackWrap {
+  margin-bottom: calc(8 * var(--base));
+}
+
+.track {
+  position: relative;
+  height: 1px;
+  margin-right: calc(11 * var(--base));
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: calc(-11 * var(--base));
+    bottom: 0;
+    left: 0;
+    background: var(--color-antique);
+    opacity: 0.5;
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: 0;
+  bottom: 100%;
+  height: var(--stroke-size);
+  width: calc(11 * var(--base));
+  background: var(--color-antique);
+}

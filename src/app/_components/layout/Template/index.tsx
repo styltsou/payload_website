@@ -1,13 +1,16 @@
-import { Fragment } from "react"
-import { Footer } from "../Footer"
+import { Fragment } from 'react';
+import { Footer } from '../Footer';
 
 interface TemplateProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
+	className?: string;
 }
 
-const Template: React.FC<TemplateProps> = ({ children }) => {
-  return <Fragment>
-    {children}
-    {/* <Footer /> */}
-  </Fragment>
-}
+export const Template = async ({ className, children }) => {
+	return (
+		<div className={className}>
+			{children}
+			{/* <Footer /> */}
+		</div>
+	);
+};

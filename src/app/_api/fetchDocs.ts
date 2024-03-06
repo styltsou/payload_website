@@ -2,9 +2,9 @@ import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 import type { Config } from '../../payload/payload-types';
 import { PAGES } from '../_graphql/pages';
+import { STUDIES } from '../_graphql/studies';
 import { GRAPHQL_API_URL } from './shared';
 import { payloadToken } from './token';
-import { STUDIES } from '../_graphql/studies';
 
 const queryMap = {
 	pages: {
@@ -22,7 +22,8 @@ export const fetchDocs = async <T>(
 	draft?: boolean,
 	variables?: Record<string, unknown>,
 ): Promise<T[]> => {
-	if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`);
+	if (!queryMap[collection])
+		throw new Error(`Collection ${collection} not found`);
 
 	let token: RequestCookie | undefined;
 
@@ -46,7 +47,8 @@ export const fetchDocs = async <T>(
 	})
 		?.then(res => res.json())
 		?.then(res => {
-			if (res.errors) throw new Error(res?.errors?.[0]?.message ?? 'Error fetching docs');
+			if (res.errors)
+				throw new Error(res?.errors?.[0]?.message ?? 'Error fetching docs');
 
 			return res?.data?.[queryMap[collection].key]?.docs;
 		});

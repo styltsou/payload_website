@@ -1,0 +1,19 @@
+.slide {
+  margin-right: calc(2 * var(--base));
+
+  & img {
+    width: 100%;
+    aspect-ratio: 3.5/4;
+    object-fit: cover;
+    margin-bottom: calc(1.5 * var(--base));
+  }
+
+  &>.title {
+    text-decoration: none;
+    color: var(--color-antique);
+
+    &.inverted {
+      color: var(--color-gray);
+    }
+  }
+}

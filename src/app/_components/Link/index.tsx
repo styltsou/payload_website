@@ -1,64 +1,74 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 
-import { Page } from '../../../payload/payload-types'
-import { Button, Props as ButtonProps } from '../Button'
+import { Page } from '../../../payload/payload-types';
+import { Button, Props as ButtonProps } from '../Button';
 
-type CMSLinkType = {
-  type?: 'custom' | 'reference'
-  url?: string
-  newTab?: boolean
-  reference?: {
-    value: string | Page
-    relationTo: 'pages'
-  }
-  label?: string
-  appearance?: ButtonProps['appearance']
-  children?: React.ReactNode
-  className?: string
-  invert?: ButtonProps['invert']
+interface CustomLinkProps {
+	id?: string | null;
+	label: string;
+	type?: ('reference' | 'custom') | null;
+	url?: string | null;
+	newTab?: boolean | null;
+	reference?: {
+		relationTo: 'pages';
+		value: number | Page;
+	} | null;
+	appearance?: ('default' | 'primary' | 'secondary') | null;
+	children?: React.ReactNode;
+	className?: string;
+	inverted?: boolean;
 }
 
-export const CMSLink: React.FC<CMSLinkType> = ({
-  type,
-  url,
-  newTab,
-  reference,
-  label,
-  appearance,
-  children,
-  className,
-  invert,
-}) => {
-  const href =
-    type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug
-      }`
-      : url
+export const CustomLink: React.FC<CustomLinkProps> = props => {
+	const {
+		type,
+		reference,
+		url,
+		newTab,
+		appearance,
+		children,
+		className,
+		inverted,
+	} = props;
 
-  if (!href) return null
+	const href =
+		(type === 'reference' &&
+			typeof reference?.value === 'object' &&
+			`/${reference.value.slug}`) ||
+		url;
 
-  if (!appearance) {
-    const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+	// This may happen if we add a nav link to an unpublished page
+	if (!href) return null;
 
-    if (href || url) {
-      return (
-        <Link {...newTabProps} href={href || url} className={className}>
-          {label && label}
-          {children && children}
-        </Link>
-      )
-    }
-  }
+	const newTabProps = newTab
+		? { target: '_blank', rel: 'noopener noreferrer' }
+		: {};
 
-  return (
-    <Button
-      className={className}
-      newTab={newTab}
-      href={href}
-      appearance={appearance}
-      label={label}
-      invert={invert}
-    />
-  )
-}
+	const isExternal = !href.startsWith('/');
+
+	if (!appearance) {
+		return isExternal ? (
+			<a href={href} {...newTabProps} className={className}>
+				{children}
+			</a>
+		) : (
+			<Link href={href} {...newTabProps} className={className}>
+				{children}
+			</Link>
+		);
+	}
+
+	// TODO: Render a button component responsible for rendering the correct elemnt and its appearnce
+	return (
+		<Button
+			className={className}
+			newTab={newTab}
+			href={href}
+			appearance={appearance}
+			inverted={inverted}
+		>
+			{children}
+		</Button>
+	);
+};

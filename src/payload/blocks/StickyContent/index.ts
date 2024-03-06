@@ -1,5 +1,7 @@
 import { Block } from 'payload/types';
 
+import backgroundColor from '../../fields/backgroundColor';
+
 export const StickyContent: Block = {
 	slug: 'sticky-content',
 	labels: {
@@ -7,6 +9,7 @@ export const StickyContent: Block = {
 		plural: 'Sticky Content Blocks',
 	},
 	fields: [
+		backgroundColor(),
 		{
 			name: 'sections',
 			label: 'sections',

@@ -34,8 +34,8 @@ export interface Page {
   title: string;
   publishedAt?: string | null;
   hero: {
-    type: 'minimal' | 'contentAboveImage' | 'contentLeftOfImage' | 'none';
-    heroImage?: number | Media | null;
+    type: 'minimal' | 'contentAboveImage' | 'contentLeftOfImage';
+    heroMedia?: number | Media | null;
     richText: {
       [k: string]: unknown;
     }[];
@@ -59,7 +59,7 @@ export interface Page {
   layout?:
     | (
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             columns?:
               | {
                   size: 'oneThird' | 'half' | 'twoThirds' | 'full';
@@ -79,7 +79,7 @@ export interface Page {
             blockType: 'content';
           }
         | {
-            image: number | Media;
+            media: number | Media;
             type?: ('normal' | 'wide' | 'fullscreen') | null;
             caption?:
               | {
@@ -88,7 +88,7 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image';
+            blockType: 'media-block';
           }
         | {
             size?: ('small' | 'medium' | 'large') | null;
@@ -97,7 +97,7 @@ export interface Page {
             blockType: 'spacer';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText: {
               [k: string]: unknown;
             }[];
@@ -122,10 +122,11 @@ export interface Page {
             blockType: 'call-to-action';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             actions?:
               | {
                   label: string;
+                  linkIcon?: boolean | null;
                   link: {
                     type?: ('reference' | 'custom') | null;
                     newTab?: boolean | null;
@@ -152,10 +153,10 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-collage';
+            blockType: 'media-collage';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText?:
               | {
                   [k: string]: unknown;
@@ -170,22 +171,22 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-grid';
+            blockType: 'media-grid';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
-            images?:
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
+            media?:
               | {
-                  image: number | Media;
+                  media: number | Media;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-slider';
+            blockType: 'media-slider';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText: {
               [k: string]: unknown;
             }[];
@@ -209,7 +210,7 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-content-collage';
+            blockType: 'media-content-collage';
           }
         | {
             stats?:
@@ -219,17 +220,18 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
-            images?:
+            media?:
               | {
-                  image: number | Media;
+                  media: number | Media;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-stat-collage';
+            blockType: 'media-stat-collage';
           }
         | {
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             topOverlap?: ('none' | 'small' | 'medium' | 'large') | null;
             bottomOverlap?: ('none' | 'small' | 'medium' | 'large') | null;
             statistics?:
@@ -244,6 +246,7 @@ export interface Page {
             blockType: 'statistics';
           }
         | {
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             sections?:
               | {
                   title: string;
@@ -256,7 +259,7 @@ export interface Page {
             blockType: 'sticky-content';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             studies: (number | Study)[];
             id?: string | null;
             blockName?: string | null;
@@ -316,10 +319,10 @@ export interface Media {
 export interface Study {
   id: number;
   title: string;
-  featuredImage: number | Media;
-  previewImages?:
+  featuredMedia: number | Media;
+  previewMedia?:
     | {
-        image: number | Media;
+        media: number | Media;
         id?: string | null;
       }[]
     | null;
@@ -329,7 +332,7 @@ export interface Study {
   layout?:
     | (
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             columns?:
               | {
                   size: 'oneThird' | 'half' | 'twoThirds' | 'full';
@@ -349,7 +352,7 @@ export interface Study {
             blockType: 'content';
           }
         | {
-            image: number | Media;
+            media: number | Media;
             type?: ('normal' | 'wide' | 'fullscreen') | null;
             caption?:
               | {
@@ -358,7 +361,7 @@ export interface Study {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image';
+            blockType: 'media-block';
           }
         | {
             size?: ('small' | 'medium' | 'large') | null;
@@ -367,7 +370,7 @@ export interface Study {
             blockType: 'spacer';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText: {
               [k: string]: unknown;
             }[];
@@ -392,10 +395,11 @@ export interface Study {
             blockType: 'call-to-action';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             actions?:
               | {
                   label: string;
+                  linkIcon?: boolean | null;
                   link: {
                     type?: ('reference' | 'custom') | null;
                     newTab?: boolean | null;
@@ -422,10 +426,10 @@ export interface Study {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-collage';
+            blockType: 'media-collage';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText?:
               | {
                   [k: string]: unknown;
@@ -440,22 +444,22 @@ export interface Study {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-grid';
+            blockType: 'media-grid';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
-            images?:
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
+            media?:
               | {
-                  image: number | Media;
+                  media: number | Media;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-slider';
+            blockType: 'media-slider';
           }
         | {
-            backgroundColor?: ('none' | 'red' | 'blue' | 'orange') | null;
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             richText: {
               [k: string]: unknown;
             }[];
@@ -479,7 +483,7 @@ export interface Study {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-content-collage';
+            blockType: 'media-content-collage';
           }
         | {
             stats?:
@@ -489,17 +493,18 @@ export interface Study {
                   id?: string | null;
                 }[]
               | null;
-            images?:
+            media?:
               | {
-                  image: number | Media;
+                  media: number | Media;
                   id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'image-stat-collage';
+            blockType: 'media-stat-collage';
           }
         | {
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             topOverlap?: ('none' | 'small' | 'medium' | 'large') | null;
             bottomOverlap?: ('none' | 'small' | 'medium' | 'large') | null;
             statistics?:
@@ -514,6 +519,7 @@ export interface Study {
             blockType: 'statistics';
           }
         | {
+            backgroundColor?: ('none' | 'red' | 'blue' | 'orange' | 'gray') | null;
             sections?:
               | {
                   title: string;

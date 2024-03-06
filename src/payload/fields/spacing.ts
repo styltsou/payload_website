@@ -22,22 +22,6 @@ const sizeOptions = [
 
 export type Size = 'none' | 'small' | 'medium' | 'large';
 
-export type Type = {
-	marginTop: Size;
-	marginBottom: Size;
-	paddingTop: Size;
-	paddingBottom: Size;
-} & (
-	| {
-			marginTop: Size;
-			marginBottom: Size;
-	  }
-	| {
-			paddingTop: Size;
-			paddingBottom: Size;
-	  }
-);
-
 type SpacingPropeties = 'padding' | 'margin';
 
 type SpacingType = (options?: {
@@ -97,7 +81,10 @@ const marginField: Field = {
 	],
 };
 
-const spacingField: SpacingType = ({ spacingProperties, overrides = {} } = {}) => {
+const spacingField: SpacingType = ({
+	spacingProperties,
+	overrides = {},
+} = {}) => {
 	let availableSpacingFields = { padding: paddingField, margin: marginField };
 
 	if (spacingProperties.length === 1) {

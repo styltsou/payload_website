@@ -1,5 +1,5 @@
 import type { Field } from 'payload/types';
-import { Type as PageType } from '../collections/Pages';
+// import { Type as PageType } from '../collections/Pages';
 import deepMerge from '../utilities/deepMerge';
 
 export const appearanceOptions = {
@@ -19,24 +19,17 @@ export const appearanceOptions = {
 
 export type LinkAppearance = 'primary' | 'secondary' | 'default';
 
-// In reference it should say study type
-
-export type Type = {
-	type: 'reference' | 'custom';
-	label: string;
-	reference?: PageType;
-	url?: string;
-	newTab?: boolean;
-	appearance?: LinkAppearance;
-};
-
 type LinkType = (options?: {
 	appearances?: LinkAppearance[] | false;
 	disableLabel?: boolean;
 	overrides?: Record<string, unknown>;
 }) => Field;
 
-const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+const link: LinkType = ({
+	appearances,
+	disableLabel = false,
+	overrides = {},
+} = {}) => {
 	const linkResult: Field = {
 		name: 'link',
 		type: 'group',
@@ -143,7 +136,9 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
 		];
 
 		if (appearances) {
-			appearanceOptionsToUse = appearances.map(appearance => appearanceOptions[appearance]);
+			appearanceOptionsToUse = appearances.map(
+				appearance => appearanceOptions[appearance],
+			);
 		}
 
 		linkResult.fields.push({

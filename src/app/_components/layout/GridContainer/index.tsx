@@ -1,10 +1,15 @@
 import React from 'react';
-import classes from './index.module.scss'
+import { cn } from '../../../_utilities/cn';
+import classes from './index.module.scss';
 
 interface GridContainerProps {
-  children: React.ReactNode;
+	className?: string;
+	children: React.ReactNode;
 }
 
-export const GridContainer: React.FC<GridContainerProps> = ({ children }) => {
-  return <div className={classes.gridContainer}>{children}</div>
-}
+export const GridContainer: React.FC<GridContainerProps> = ({
+	className,
+	children,
+}) => {
+	return <div className={cn(classes.gridContainer, className)}>{children}</div>;
+};

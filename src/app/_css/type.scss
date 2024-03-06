@@ -10,9 +10,9 @@
 }
 
 %h1 {
-  // margin: 40px 0;
   font-size: calc(5 * var(--base));
   line-height: calc(5 * var(--base));
+  margin: calc(1.4 * var(--base)) 0;
 
   // @include mid-break {
   //   margin: 24px 0;
@@ -22,9 +22,9 @@
 }
 
 %h2 {
-  // margin: 28px 0;
   font-size: calc(4.25 * var(--base));
   line-height: calc(5 * var(--base));
+  margin: calc(1.25 * var(--base)) 0;
 
   // @include mid-break {
   //   margin: 22px 0;
@@ -34,9 +34,9 @@
 }
 
 %h3 {
-  // margin: 24px 0;
   font-size: calc(3.5 * var(--base));
   line-height: calc(5 * var(--base));
+  // margin: calc(0.7 * var(--base)) 0;
 
   // @include mid-break {
   //   margin: 20px 0;
@@ -48,7 +48,7 @@
 %h4 {
   font-size: calc(2.25 * var(--base));
   line-height: calc(2.5 * var(--base));
-  // margin: 20px 0;
+  margin: var(--base) 0;
 
   // @include mid-break {
   //   font-size: 22px;
@@ -59,7 +59,7 @@
 %h5 {
   font-size: calc(1.625 * var(--base));
   line-height: calc(2.25 * var(--base));
-  // margin: 20px 0;
+  margin: var(--base) 0;
 
   // @include mid-break {
   //   font-size: 18px;
@@ -70,13 +70,12 @@
 %h6 {
   font-size: inherit;
   line-height: inherit;
-  // margin: 20px 0;
+  margin: var(--base) 0;
 }
 
 %body {
   font-size: var(--html-font-size);
   line-height: calc(1.5 * var(--base));
-
   // @include mid-break {
   //   font-size: 15px;
   //   line-height: 24px;
@@ -84,8 +83,9 @@
 }
 
 %large-body {
-  font-size: 25px;
-  line-height: 32px;
+  font-size: calc(1.25 * var(--base));
+  line-height: calc(2.25 * var(--base));
+  margin: calc(0.5 * var(--base)) 0;
 
   @include mid-break {
     font-size: 22px;
@@ -94,8 +94,9 @@
 }
 
 %label {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: calc(2.4 * var(--base));
+  letter-spacing: 2.5px;
   text-transform: uppercase;
 
   @include mid-break {

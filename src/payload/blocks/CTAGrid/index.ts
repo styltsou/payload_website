@@ -25,6 +25,12 @@ export const CTAGrid: Block = {
 					type: 'text',
 					required: true,
 				},
+				{
+					name: 'linkIcon',
+					label: 'Link Icon',
+					type: 'checkbox',
+					defaultValue: true,
+				},
 				link({ appearances: false }),
 			],
 		},

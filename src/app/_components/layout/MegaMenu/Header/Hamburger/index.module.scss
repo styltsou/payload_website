@@ -1,0 +1,45 @@
+.burger {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  width: calc(1.3 * var(--base));
+  height: calc(1.15 * var(--base));
+
+
+  &.active .dash:first-child {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  &.active .dash:last-child {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  &.active .dash:nth-child(2) {
+    transform: rotate(-45deg);
+  }
+
+  &.active .dash:nth-child(3) {
+    transform: rotate(45deg);
+  }
+}
+
+.dash {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-white);
+  opacity: 1;
+  transition: all 200ms linear;
+
+  &:first-child {
+    top: 0;
+  }
+
+  &:last-child {
+    bottom: 0;
+  }
+}

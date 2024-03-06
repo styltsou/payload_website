@@ -1,6 +1,7 @@
 import type { Block, Field } from 'payload/types';
 
 import backgroundColor from '../../fields/backgroundColor';
+import richText from '../../fields/richtext';
 import spacing from '../../fields/spacing';
 
 const columnFields: Field[] = [
@@ -60,12 +61,7 @@ const columnFields: Field[] = [
 			},
 		],
 	},
-	{
-		name: 'richText',
-		label: 'Content',
-		type: 'richText',
-		required: true,
-	},
+	richText(),
 ];
 
 export const Content: Block = {

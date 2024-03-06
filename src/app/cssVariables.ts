@@ -32,4 +32,11 @@ export const colors = {
 	base850: 'rgb(34, 34, 34)',
 	base1000: 'rgb(0, 0, 0)',
 	error500: 'rgb(255, 111, 118)',
+	red: '#FF322C',
+	blue: '#9ED1D8',
+	orange: '#FCB449',
+	antique: '#FFF9F2',
+	gray: '#181818',
+	white: '#fff',
+	black: '#000',
 };

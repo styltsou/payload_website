@@ -1,8 +1,25 @@
 .richText {
+  &>* {
+    white-space: nowrap;
+  }
+
+  &>p {
+    margin: 0;
+  }
+
   :first-child {
     margin-top: 0;
   }
+
   :last-child {
     margin-bottom: 0;
   }
+
+  & h1>span {}
+
+  & h2>span {}
+
+  & h3>span {}
+
+  & h4>span {}
 }

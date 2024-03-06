@@ -5,19 +5,28 @@
 :root {
   --base: 20px;
   --html-font-size: 18px;
-  --font-body: system-ui;
-  --font-mono: 'Roboto Mono', monospace;
-
-  --gutter-h: 180px;
-  --block-padding: 120px;
+  // --font-body: Geist;
+  // --font-mono: 'Roboto Mono', monospace;
 
   --grid-container-width: 920px;
   --grid-overflow: calc(var(--base) * 6);
 
+  --header-height: calc(var(--base) * 7);
+
+  --stroke-size: 3px;
+  --gutter-width: calc(var(--base) * 7);
+
+  --padding-small: calc(2 * var(--base));
+  --padding-medium: calc(7 * var(--base));
+  --padding-large: calc(12 * var(--base));
+
+  --overlap-small: calc(3 * var(--base));
+  --overlap-medium: calc(8 * var(--base));
+  --overlap-large: calc(12 * var(--base));
+
   --zIndex-page: 10;
   --zIndex-modal: 20;
   --zIndex-header: 30;
-
 
   @include large-break {
     --gutter-h: 144px;
@@ -40,18 +49,12 @@ html {
   @extend %body;
   background: var(--color-antique);
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
   // opacity: 0;
 }
 
-html,
-body,
-#app {
-  height: 100%;
-}
-
 body {
-  font-family: var(--font-body);
-  color: var(--theme-text);
+  height: 100%;
 }
 
 ::selection {
@@ -94,18 +97,30 @@ h6 {
   @extend %h6;
 }
 
-// p {
-//   margin: var(--base) 0;
+p {
+  margin: var(--base) 0;
 
-//   @include mid-break {
-//     margin: calc(var(--base) * .75) 0;
-//   }
-// }
+  @include mid-break {
+    margin: calc(var(--base) * .75) 0;
+  }
+}
+
+.body {
+  @extend %body;
+}
+
+.large_body {
+  @extend %large-body
+}
 
 ul,
 ol {
-  padding-left: var(--base);
-  margin: 0 0 var(--base);
+  margin: 0 0 0 var(--base);
+  padding: 0 0 var(--base) 0;
+}
+
+li {
+  @extend %body;
 }
 
 a {
@@ -129,4 +144,25 @@ svg {
 button {
   border: none;
   background-color: transparent;
+}
+
+.label {
+  @extend %label;
+}
+
+.paddingTop {
+  padding-top: var(--header-height);
+}
+
+.modals__modal-item {
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+
+.modals__modal-item--enterActive {
+  opacity: 1;
+}
+
+.modals__modal-item--enterDone {
+  opacity: 1;
 }

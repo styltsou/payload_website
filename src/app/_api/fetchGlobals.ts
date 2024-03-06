@@ -1,4 +1,8 @@
-import type { MegaMenu, Footer, SocialMedia } from '../../payload/payload-types';
+import type {
+	MegaMenu,
+	Footer,
+	SocialMedia,
+} from '../../payload/payload-types';
 import { MEGA_MENU, FOOTER, SOCIAL_MEDIA } from '../_graphql/globals';
 import { GRAPHQL_API_URL } from './shared';
 
@@ -20,7 +24,8 @@ export async function fetchMegaMenu(): Promise<MegaMenu> {
 			return res.json();
 		})
 		?.then(res => {
-			if (res?.errors) throw new Error(res?.errors[0]?.message || 'Error fetching header');
+			if (res?.errors)
+				throw new Error(res?.errors[0]?.message || 'Error fetching header');
 			return res.data?.MegaMenu;
 		});
 
@@ -44,7 +49,8 @@ export async function fetchFooter(): Promise<Footer> {
 			return res.json();
 		})
 		?.then(res => {
-			if (res?.errors) throw new Error(res?.errors[0]?.message || 'Error fetching footer');
+			if (res?.errors)
+				throw new Error(res?.errors[0]?.message || 'Error fetching footer');
 			return res.data?.Footer;
 		});
 
@@ -68,7 +74,8 @@ export async function fetchSocialMedia(): Promise<SocialMedia> {
 			return res.json();
 		})
 		?.then(res => {
-			if (res?.errors) throw new Error(res?.errors[0]?.message || 'Error fetching footer');
+			if (res?.errors)
+				throw new Error(res?.errors[0]?.message || 'Error fetching footer');
 			return res.data?.SocialMedia;
 		});
 
@@ -87,11 +94,12 @@ export const fetchGlobals = async (): Promise<{
 	const footerData = fetchFooter();
 	const socialMediaData = fetchSocialMedia();
 
-	const [megaMenu, footer, socialMedia]: [MegaMenu, Footer, SocialMedia] = await Promise.all([
-		await megaMenuData,
-		await footerData,
-		await socialMediaData,
-	]);
+	const [megaMenu, footer, socialMedia]: [MegaMenu, Footer, SocialMedia] =
+		await Promise.all([
+			await megaMenuData,
+			await footerData,
+			await socialMediaData,
+		]);
 
 	return {
 		megaMenu,

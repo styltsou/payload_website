@@ -1,54 +1,38 @@
-import React, { Fragment } from 'react'
+import React from 'react';
 
-import { Page } from '../../../payload/payload-types.js'
-
-import { CallToActionBlock } from '../../_blocks/CallToAction'
-import { ContentBlock } from '../../_blocks/Content'
-
-import { toKebabCase } from '../../_utilities/toKebabCase'
-import { BackgroundColor } from '../BackgroundColor'
-import { VerticalPadding, VerticalPaddingOptions } from '../VerticalPadding'
-
-const blockComponents = {
-  cta: CallToActionBlock,
-  content: ContentBlock,
-}
+import { Page } from '../../../payload/payload-types.js';
+import { BLOCKS_MAP } from '../../_blocks/blocksMap';
 
 export const Blocks: React.FC<{
-  blocks: (Page['layout'][0])[]
+	blocks: Page['layout'][0][];
 }> = props => {
-  const { blocks } = props
+	const { blocks } = props;
 
-  const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
+	const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
 
-  if (hasBlocks) {
-    return (
-      <Fragment>
-        {blocks.map((block, index) => {
-          const { blockName, blockType } = block
+	if (hasBlocks) {
+		return (
+			<>
+				{blocks.map(block => {
+					const { blockType } = block;
 
-          if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+					if (blockType && blockType in BLOCKS_MAP) {
+						const Block = BLOCKS_MAP[blockType];
 
-            const prevBlock = blocks[index - 1]
+						if (Block) {
+							return (
+								<section key={block.id}>
+									<Block {...block} />
+								</section>
+							);
+						}
+					}
 
-            if (Block) {
-              return (
-                <div>
-                  <VerticalPadding>
-                    {/* @ts-expect-error */}
-                    <Block id={toKebabCase(blockName)} {...block} />
-                  </VerticalPadding>
-                </div>
-              )
-            }
-          }
+					return null;
+				})}
+			</>
+		);
+	}
 
-          return null
-        })}
-      </Fragment>
-    )
-  }
-
-  return null
-}
+	return null;
+};

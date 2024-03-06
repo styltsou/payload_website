@@ -1,21 +1,10 @@
 import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 import type { Config } from '../../payload/payload-types';
-import { PAGE } from '../_graphql/pages';
-import { STUDY } from '../_graphql/studies';
-import { GRAPHQL_API_URL } from './shared';
+import { API_URL } from './shared';
 import { payloadToken } from './token';
 
-const queryMap = {
-	pages: {
-		query: PAGE,
-		key: 'Pages',
-	},
-	studies: {
-		query: STUDY,
-		key: 'Studies',
-	},
-};
+const collections = ['pages', 'studies'];
 
 export const fetchDoc = async <T>(args: {
 	collection: keyof Config['collections'];
@@ -25,7 +14,8 @@ export const fetchDoc = async <T>(args: {
 }): Promise<T> => {
 	const { collection, slug, draft } = args || {};
 
-	if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`);
+	if (!collections.includes(collection))
+		throw new Error(`Collection ${collection} not found`);
 
 	let token: RequestCookie | undefined;
 
@@ -34,26 +24,25 @@ export const fetchDoc = async <T>(args: {
 		token = cookies().get(payloadToken);
 	}
 
-	const doc: T = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			...(token?.value && draft ? { Authorization: `JWT ${token.value}` } : {}),
-		},
-		cache: 'no-store',
-		next: { tags: [`${collection}_${slug}`] },
-		body: JSON.stringify({
-			query: queryMap[collection].query,
-			variables: {
-				slug,
-				draft,
+	const doc: T = await fetch(
+		`${API_URL}/api/${collection}?where[slug][equals]=${slug}&draft=${draft}`,
+		{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				...(token?.value && draft
+					? { Authorization: `JWT ${token.value}` }
+					: {}),
 			},
-		}),
-	})
+			cache: 'no-store',
+			next: { tags: [`${collection}_${slug}`] },
+		},
+	)
 		?.then(res => res.json())
 		?.then(res => {
-			if (res.errors) throw new Error(res?.errors?.[0]?.message ?? 'Error fetching doc');
-			return res?.data?.[queryMap[collection].key]?.docs?.[0];
+			if (res.errors)
+				throw new Error(res?.errors?.[0]?.message ?? 'Error fetching doc');
+			return res?.docs?.[0];
 		});
 
 	return doc;

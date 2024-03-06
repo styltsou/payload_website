@@ -1,0 +1,17 @@
+.wrap {
+  overflow: hidden;
+}
+
+.slider {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+
+  & *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.grabCursor {
+  cursor: grab;
+}

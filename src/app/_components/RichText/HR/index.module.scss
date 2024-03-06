@@ -1,0 +1,7 @@
+.hr {
+  margin: calc(2 * var(--base)) 0;
+  border: none;
+  background-color: var(--color-gray);
+  width: calc(2 * var(--base));
+  height: var(--stroke-size);
+}

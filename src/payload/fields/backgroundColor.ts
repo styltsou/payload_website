@@ -2,9 +2,9 @@ import { Field } from 'payload/types';
 
 import deepMerge from '../utilities/deepMerge';
 
-export type BackgroundColorType = 'none' | 'red' | 'blue' | 'orange';
+export type BackgroundColorType = 'none' | 'red' | 'blue' | 'orange' | 'gray';
 
-type BackgroundColorFactory = (options?: {
+type BackgroundColor = (options?: {
 	colors?: BackgroundColorType[];
 	overrides?: Record<string, unknown>;
 }) => Field;
@@ -14,9 +14,10 @@ const colorOptions = {
 	red: { label: 'Red', value: 'red' },
 	blue: { label: 'Blue', value: 'blue' },
 	orange: { label: 'Orange', value: 'orange' },
+	gray: { label: 'Gray', value: 'gray' },
 };
 
-const backgroundColor: BackgroundColorFactory = ({ colors, overrides = {} } = {}) => {
+const backgroundColor: BackgroundColor = ({ colors, overrides = {} } = {}) => {
 	let backgroundColorResult: Field = {
 		name: 'backgroundColor',
 		type: 'radio',
@@ -29,13 +30,17 @@ const backgroundColor: BackgroundColorFactory = ({ colors, overrides = {} } = {}
 		colorOptions.red,
 		colorOptions.blue,
 		colorOptions.orange,
+		colorOptions.gray,
 	];
 
 	if (colors) {
 		colorOptionsToUse = colors.map(color => colorOptions[color]);
 	}
 
-	backgroundColorResult = { ...backgroundColorResult, options: colorOptionsToUse };
+	backgroundColorResult = {
+		...backgroundColorResult,
+		options: colorOptionsToUse,
+	};
 
 	return deepMerge(backgroundColorResult, overrides);
 };
